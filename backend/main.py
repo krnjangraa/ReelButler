@@ -50,10 +50,14 @@ def ask_question(data: QuestionRequest):
         }
 
     # STEP 3 → generate answer
-    response = model.generate_content(data.question)
+    response = client.models.generate_content(
+
+    model="gemini-2.5-flash",
+
+    contents=data.question
+    )
 
     answer = response.text
-
 
     # STEP 4 → store in DB
     new_entry = models.Inquiry(
