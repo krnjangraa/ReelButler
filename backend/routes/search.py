@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from search.semantic_search import semantic_search
+from search.hybrid_search import hybrid_search
 
 
 router = APIRouter()
@@ -9,6 +9,7 @@ router = APIRouter()
 @router.get("/search")
 def search(query: str):
 
-    results = semantic_search(query)
+    results = hybrid_search(query)
 
     return results
+    
