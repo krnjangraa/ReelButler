@@ -10,3 +10,4 @@ apscheduler
 scikit-learn
 google-generativeai
 python-multipart
+google-genai
