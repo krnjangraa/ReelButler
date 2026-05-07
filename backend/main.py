@@ -8,6 +8,9 @@ import os
 from routes.search import router as search_router
 from routes.trending import router as trending_router
 from routes.agents import router as agents_router
+from fastapi.middleware.cors import (
+    CORSMiddleware
+)
 # from scheduler import start_scheduler
 
 load_dotenv()
@@ -23,6 +26,18 @@ models.Base.metadata.create_all(
 )
 
 app = FastAPI()
+app.add_middleware(
+
+    CORSMiddleware,
+
+    allow_origins=["*"],
+
+    allow_credentials=True,
+
+    allow_methods=["*"],
+
+    allow_headers=["*"],
+)
 # start_scheduler()
 app.include_router(trending_router)
 app.include_router(search_router)

@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 import AgentOutput from "../components/AgentOutput"
-
+const API_URL = import.meta.env.VITE_API_URL
 
 function CreatorStudio() {
 
@@ -21,7 +21,7 @@ function CreatorStudio() {
 
     const response = await fetch(
 
-        "/run-workflow",
+        `${API_URL}/run-workflow`,
 
         {
 
