@@ -1,8 +1,9 @@
+const API_URL = import.meta.env.VITE_API_URL
 export async function fetchTrending(niche) {
 
     const response = await fetch(
 
-        `/trending/${niche}`
+        `${API_URL}/trending/${niche}`
     )
 
     const data = await response.json()
@@ -15,7 +16,7 @@ export async function fetchVideoDetails(
 ) {
 
     const response = await fetch(
-        `/video/${videoId}`
+        `${API_URL}/video/${videoId}`
     )
 
     const data = await response.json()
@@ -29,7 +30,7 @@ export async function searchVideos(
 
     const response = await fetch(
 
-        `/search?query=${query}`
+        `${API_URL}/search?query=${query}`
     )
 
     const data = await response.json()
