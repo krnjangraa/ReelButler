@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 
 import {
 
-  BrowserRouter,
+  HashRouter,
 
   Routes,
 
@@ -25,7 +25,7 @@ ReactDOM.createRoot(
   document.getElementById('root')
 ).render(
 
-  <BrowserRouter>
+  <HashRouter>
 
     <Routes>
 
@@ -44,5 +44,5 @@ ReactDOM.createRoot(
       />
     </Routes>
 
-  </BrowserRouter>
+  </HashRouter>
 )
