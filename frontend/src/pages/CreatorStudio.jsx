@@ -1,7 +1,11 @@
 import { useState } from "react"
 
 import AgentOutput from "../components/AgentOutput"
-const API_URL = import.meta.env.VITE_API_URL
+
+import {
+    runWorkflow
+} from "../services/api"
+
 
 function CreatorStudio() {
 
@@ -12,41 +16,29 @@ function CreatorStudio() {
     const [output, setOutput] = useState("")
 
 
-    async function runWorkflow() {
+    async function handleWorkflow() {
 
-    setLoading(true)
+        setLoading(true)
 
-    setOutput("")
+        setOutput("")
 
+        try {
 
-    const response = await fetch(
+            const data = await runWorkflow(
+                topic
+            )
 
-        `${API_URL}/run-workflow`,
+            setOutput(
+                data.response
+            )
 
-        {
+        } catch (error) {
 
-            method: "POST",
-
-            headers: {
-
-                "Content-Type":
-                "application/json"
-            },
-
-            body: JSON.stringify({
-
-                topic: topic
-            })
+            console.error(error)
         }
-    )
 
-
-    const data = await response.json()
-
-    setOutput(data.response)
-
-    setLoading(false)
-}
+        setLoading(false)
+    }
 
 
     return (
@@ -83,7 +75,7 @@ function CreatorStudio() {
 
             <button
 
-                onClick={runWorkflow}
+                onClick={handleWorkflow}
 
                 style={{
                     marginLeft: "10px",
