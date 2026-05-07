@@ -1,15 +1,15 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import (
+    BackgroundScheduler
+)
+
 import youtube_discovery
-
 import youtube_tracker
-
 import cleanup
 
 
 scheduler = BackgroundScheduler()
 
 
-# DISCOVERY PIPELINE
 scheduler.add_job(
 
     youtube_discovery.run_discovery,
@@ -20,7 +20,6 @@ scheduler.add_job(
 )
 
 
-# TRACKING PIPELINE
 scheduler.add_job(
 
     youtube_tracker.run_tracker,
@@ -31,7 +30,6 @@ scheduler.add_job(
 )
 
 
-# CLEANUP PIPELINE
 scheduler.add_job(
 
     cleanup.cleanup_old_data,
@@ -42,7 +40,8 @@ scheduler.add_job(
 )
 
 
-print("Scheduler started...")
+def start_scheduler():
 
+    scheduler.start()
 
-scheduler.start()
+    print("Scheduler started...")
