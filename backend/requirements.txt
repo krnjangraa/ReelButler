@@ -5,8 +5,6 @@ psycopg2-binary
 python-dotenv
 requests
 numpy
-faiss-cpu
-sentence-transformers
 rank-bm25
 apscheduler
 scikit-learn
