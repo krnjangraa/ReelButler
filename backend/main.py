@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 from database import engine, SessionLocal
 import models
 import os
@@ -12,12 +12,15 @@ from routes.agents import router as agents_router
 
 load_dotenv()
 
-genai.configure(
-    api_key=os.getenv("GEMINI_API_KEY")
+client = genai.Client(
+    api_key=os.getenv(
+        "GEMINI_API_KEY"
+    )
 )
-model = genai.GenerativeModel("gemini-2.5-flash")
 
-models.Base.metadata.create_all(bind=engine)
+models.Base.metadata.create_all(
+    bind=engine
+)
 
 app = FastAPI()
 # start_scheduler()

@@ -8,6 +8,6 @@ numpy
 rank-bm25
 apscheduler
 scikit-learn
-google-generativeai
+# google-generativeai
 python-multipart
 google-genai
