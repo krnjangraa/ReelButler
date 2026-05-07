@@ -8,9 +8,12 @@ import os
 from routes.search import router as search_router
 from routes.trending import router as trending_router
 from routes.agents import router as agents_router
-from scheduler import start_scheduler
+# from scheduler import start_scheduler
 from fastapi.middleware.cors import (
     CORSMiddleware
+)
+from routes.automation import (
+    router as automation_router
 )
 
 
@@ -28,10 +31,13 @@ models.Base.metadata.create_all(
 
 app = FastAPI()
 
-@app.on_event("startup")
-def startup_event():
+app.include_router(automation_router)
 
-    start_scheduler()
+# @app.on_event("startup")
+# def startup_event():
+
+#     start_scheduler()
+
 app.add_middleware(
 
     CORSMiddleware,
