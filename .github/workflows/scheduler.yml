@@ -1,0 +1,36 @@
+name: ReelButler Automation
+
+on:
+
+  schedule:
+
+    # every 3 hours
+    - cron: "0 */3 * * *"
+
+  workflow_dispatch:
+
+
+jobs:
+
+  trigger-jobs:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Trigger Discovery
+        run: |
+
+          curl https://reelbutler-backend.onrender.com/run-discovery
+
+
+      - name: Trigger Tracker
+        run: |
+
+          curl https://reelbutler-backend.onrender.com/run-tracker
+
+
+      - name: Trigger Cleanup
+        run: |
+
+          curl https://reelbutler-backend.onrender.com/run-cleanup
