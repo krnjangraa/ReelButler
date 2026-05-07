@@ -8,7 +8,9 @@ import os
 from routes.search import router as search_router
 from routes.trending import router as trending_router
 from routes.agents import router as agents_router
-
+from scheduler import (
+    start_scheduler
+)
 load_dotenv()
 
 genai.configure(
@@ -19,6 +21,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+start_scheduler()
 app.include_router(trending_router)
 app.include_router(search_router)
 app.include_router(agents_router)
