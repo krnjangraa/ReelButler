@@ -8,9 +8,8 @@ import os
 from routes.search import router as search_router
 from routes.trending import router as trending_router
 from routes.agents import router as agents_router
-from scheduler import (
-    start_scheduler
-)
+# from scheduler import start_scheduler
+
 load_dotenv()
 
 genai.configure(
@@ -21,7 +20,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-start_scheduler()
+# start_scheduler()
 app.include_router(trending_router)
 app.include_router(search_router)
 app.include_router(agents_router)
@@ -47,7 +46,7 @@ def ask_question(data: QuestionRequest):
             "cached": True
         }
 
-    # STEP 3 → fake AI answer
+    # STEP 3 → generate answer
     response = model.generate_content(data.question)
 
     answer = response.text
