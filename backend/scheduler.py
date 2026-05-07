@@ -1,5 +1,4 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
-
+from apscheduler.schedulers.background import BackgroundScheduler
 import youtube_discovery
 
 import youtube_tracker
@@ -7,7 +6,7 @@ import youtube_tracker
 import cleanup
 
 
-scheduler = BlockingScheduler()
+scheduler = BackgroundScheduler()
 
 
 # DISCOVERY PIPELINE

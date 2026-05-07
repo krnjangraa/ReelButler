@@ -66,10 +66,20 @@ for video in videos:
 
 
 # BM25 MODEL
-bm25 = BM25Okapi(documents)
+if len(documents) > 0:
+
+    bm25 = BM25Okapi(documents)
+
+else:
+
+    bm25 = None
 
 
 def hybrid_search(query):
+        
+    if bm25 is None:
+
+        return []
 
     # -------------------
     # SEMANTIC SEARCH
